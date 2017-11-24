@@ -56,9 +56,10 @@ var contentEditor = new mobeditor({
 
 ### 提问
 
-注意，作者只受理以下几种提问方式，其他方式直接忽略
 
 - 直接在 [github issues](https://github.com/GGwujun/MobEditor/issues) 提交问题
+
+
 
 ### 更新日志
 
