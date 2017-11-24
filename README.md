@@ -3,14 +3,14 @@
 
 ## 介绍
 
-**mobeditor** —— 轻量级移动端富文本编辑器，配置方便，使用简单。支持 IE10+ 浏览器。
+**mobeditor** —— 轻量级移动端富文本编辑器，配置方便，使用简单。
 
 
 
 
 ## 下载
 
-- 直接下载：[https://github.com/wangfupeng1988/wangEditor/releases](https://github.com/wangfupeng1988/wangEditor/releases)
+- 直接下载：[https://github.com/GGwujun/MobEditor/blob/master/dist](https://github.com/GGwujun/MobEditor/blob/master/dist)
 - 使用`npm`下载：`npm install mobeditor` （注意 `mobeditor` 全部是**小写字母**）
 - 使用`bower`下载：`bower install mobeditor` （前提保证电脑已安装了`bower`）
 
