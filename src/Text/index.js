@@ -1,6 +1,6 @@
-import { _formatInnerText, _getLayerMaxZIndex, _genEditorUid, _inArray, _scriptPath } from '../util/lang'
+import { _formatInnerText, _getLayerMaxZIndex, _genEditorUid, _inArray, _scriptPath } from '../Util/lang'
 import { selectors } from '../Selector/'
-import { _showEditorWrapMask, _hideEditorWrapMask, _appendHistory, _hideEditorControllerLayer, _correctHtmlStructure } from '../editor/'
+import { _showEditorWrapMask, _hideEditorWrapMask, _appendHistory, _hideEditorControllerLayer, _correctHtmlStructure } from '../Editor/'
 export class Text {
     constructor($this) {
         this.bindevent($this);

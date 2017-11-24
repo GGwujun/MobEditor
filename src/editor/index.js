@@ -1,15 +1,15 @@
 import config from '../config'
-import { _formatInnerText, _getLayerMaxZIndex, _genEditorUid, _inArray, _scriptPath } from '../util/lang'
+import { _formatInnerText, _getLayerMaxZIndex, _genEditorUid, _inArray, _scriptPath } from '../Util/lang'
 import { _controllerUploader, initUpload } from '../Upload/'
-import { initEvent } from '../event/'
-import { initTool } from '../toolbars/'
+import { initEvent } from '../Event/'
+import { initTool } from '../Toolbars/'
 import { selectors, initele } from '../Selector/'
 import { Text } from '../Text/'
 
 /**
  * 编辑器构造函数
  */
-export default class MEditor {
+export default class mobeditor {
     constructor(params) {
         this.init(params)
     }

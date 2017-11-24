@@ -1,8 +1,8 @@
-import { _formatInnerText, _getLayerMaxZIndex, _genEditorUid, _inArray, _scriptPath } from '../util/lang'
+import { _formatInnerText, _getLayerMaxZIndex, _genEditorUid, _inArray, _scriptPath } from '../Util/lang'
 import config from '../config'
 import { Text } from '../Text/'
 import { selectors } from '../Selector/'
-import { _showEditorWrapMask, _appendHistory, _hideEditorControllerLayer, _correctHtmlStructure } from '../editor/'
+import { _showEditorWrapMask, _appendHistory, _hideEditorControllerLayer, _correctHtmlStructure } from '../Editor/'
 
 
 

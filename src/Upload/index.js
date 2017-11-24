@@ -1,8 +1,8 @@
 import config from '../config'
-import { _inArray } from '../util/lang'
+import { _inArray } from '../Util/lang'
 import { Text } from '../Text/'
 import { selectors } from '../Selector/'
-import { _showEditorWrapMask, _hideEditorWrapMask, _appendHistory, _hideEditorControllerLayer, _correctHtmlStructure } from '../editor/'
+import { _showEditorWrapMask, _hideEditorWrapMask, _appendHistory, _hideEditorControllerLayer, _correctHtmlStructure } from '../Editor/'
 //封装Uploader函数
 
 

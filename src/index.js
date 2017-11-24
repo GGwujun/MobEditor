@@ -1,5 +1,5 @@
-import MEditor from './editor/'
-export default MEditor
-export { MEditor }
+import mobeditor from './Editor/'
+export default mobeditor
+export { mobeditor }
 
 

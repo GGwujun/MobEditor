@@ -1,5 +1,5 @@
 import config from '../config'
-import { _editorModuleEvents } from '../event/'
+import { _editorModuleEvents } from '../Event/'
 import { selectors } from '../Selector/'
 export function initTool($editor) {
     selectors._$editorController.on('click', 'ul li', function () {
