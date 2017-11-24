@@ -42,33 +42,26 @@ var contentEditor = new mobeditor({
 
 ## 运行 demo
 
-- 下载源码 `git clone git@github.com:wangfupeng1988/wangEditor.git`
+- 下载源码 `git clone https://github.com/GGwujun/MobEditor.git`
 - 安装或者升级最新版本 node（最低`v6.x.x`）
-- 进入目录，安装依赖包 `cd wangEditor && npm i`
-- 安装包完成之后，windows 用户运行`npm run win-example`，Mac 用户运行`npm run example`
-- 打开浏览器访问[localhost:3000/index.html](http://localhost:3000/index.html)
-- 用于 React 或者 vue 可查阅[文档](http://www.kancloud.cn/wangfupeng/wangeditor3/332599)中“其他”章节中的相关介绍
+- 进入目录，安装依赖包 `cd MobEditor && npm i`
 
 ## 交流
 
 ### QQ 群
 
-以下 QQ 群欢迎加入交流问题（可能有些群已经满员）
+以下 QQ 群欢迎加入交流问题
 
-- 164999061
-- 281268320
+- 225192209
 
 ### 提问
 
 注意，作者只受理以下几种提问方式，其他方式直接忽略
 
-- 直接在 [github issues](https://github.com/wangfupeng1988/wangEditor/issues) 提交问题
-- 去[知乎](https://www.zhihu.com/)提问，并邀请[作者](https://www.zhihu.com/people/wang-fu-peng-54/activities)来回答
-- 去[segmentfault](https://segmentfault.com)提问，并邀请[作者](https://segmentfault.com/u/wangfupeng1988)来回答
+- 直接在 [github issues](https://github.com/GGwujun/MobEditor/issues) 提交问题
 
-每次升级版本修复的问题记录在[这里](./ISSUE.md)
+### 更新日志
 
-## 关于作者
+#### v1.0.1 （2017.11.24）
 
-- 关注作者的博客 - 《[深入理解javascript原型和闭包系列](http://www.cnblogs.com/wangfupeng1988/p/4001284.html)》《[深入理解javascript异步系列](https://github.com/wangfupeng1988/js-async-tutorial)》《[CSS知多少](http://www.cnblogs.com/wangfupeng1988/p/4325007.html)》 
-- 学习作者的教程 - 《[前端JS基础面试题](http://coding.imooc.com/class/115.html)》《[React.js模拟大众点评webapp](http://coding.imooc.com/class/99.html)》《[zepto设计与源码分析](http://www.imooc.com/learn/745)》《[用grunt搭建自动化的web前端开发环境](http://study.163.com/course/courseMain.htm?courseId=1103003)》《[json2.js源码解读](http://study.163.com/course/courseMain.htm?courseId=691008)》
+- [done] 发布 v1.0.1
