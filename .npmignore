@@ -1,5 +1,4 @@
-node_modules/*
 npm-debug.log
-docs/*
-src/*
-example/*
+example/
+src/
+node_modules/
