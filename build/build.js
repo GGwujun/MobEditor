@@ -5,14 +5,15 @@ const pkg = require('../package.json');
 const babel = require('rollup-plugin-babel');
 const uglify = require('uglify-js');
 const zlib = require('zlib');
-const eslint = require('rollup-plugin-eslint');
-const scss = require('rollup-plugin-scss');
+const postcss = require('rollup-plugin-postcss');
+
 
 const commonjs = require('rollup-plugin-commonjs');
 const resolve = require('rollup-plugin-node-resolve');
 
 const RELEASE_ROOT_PATH = 'dist';
 const SOURCE_ROOT_PATH = 'src';
+const EXAMPLE_PATH = 'example';
 const RELEASE_FILE_NAME = pkg.name;
 const SOURCE_ENTRY_FILE = `${SOURCE_ROOT_PATH}/index.js`;
 
@@ -20,9 +21,6 @@ if (!fs.existsSync(RELEASE_ROOT_PATH)) {
     fs.mkdirSync(RELEASE_ROOT_PATH);
 }
 
-if (!fs.existsSync('_tmp')) {
-    fs.mkdirSync('_tmp');
-}
 
 function resolvePath(p) {
     return path.resolve(__dirname, '../', p);
@@ -42,24 +40,14 @@ const buildOptions = [{
     input: resolvePath(SOURCE_ENTRY_FILE),
     format: 'umd',
     output: {
-        file: resolvePath(`${RELEASE_ROOT_PATH}/debug/${RELEASE_FILE_NAME}.js`),
+        file: resolvePath(`${RELEASE_ROOT_PATH}/debug/${RELEASE_FILE_NAME}@rollup.js`),
         // 输出文件的umd必须要，否则watch监控失败
         format: 'umd',
     },
-    name: 'pagerefresh',
+    name: 'mobeditor',
     plugins: [
-        // scss({
-        //     output: './dist/debug/pagerefresh.css',
-        // }),
-        // eslint({
-        //     throwOnError: true,
-        //     throwOnWarning: true,
-        //     include: ['src/**'],
-        //     exclude: ['node_modules/**'],
-        // }),
-        babel({
-            exclude: 'node_modules/**',
-        }),
+        postcss({ extensions: ['.css'] }),
+        babel({ exclude: 'node_modules/**' }),
         commonjs(),
         resolve({
             jsnext: true,
@@ -73,24 +61,14 @@ const buildOptions = [{
     input: resolvePath(SOURCE_ENTRY_FILE),
     format: 'umd',
     output: {
-        file: resolvePath(`${RELEASE_ROOT_PATH}/release/${RELEASE_FILE_NAME}.min.js`),
+        file: resolvePath(`${EXAMPLE_PATH}/${RELEASE_FILE_NAME}@rollup.js`),
         // 输出文件的umd必须要，否则watch监控失败
         format: 'umd',
     },
-    name: 'pagerefresh',
+    name: 'mobeditor',
     plugins: [
-        // scss({
-        //     output: './dist/release/pagerefresh.css',
-        // }),
-        // eslint({
-        //     throwOnError: true,
-        //     throwOnWarning: true,
-        //     include: ['src/**'],
-        //     exclude: ['node_modules/**'],
-        // }),
-        babel({
-            exclude: 'node_modules/**',
-        }),
+        postcss({ extensions: ['.css'] }),
+        babel({ exclude: 'node_modules/**' }),
         commonjs(),
         resolve({
             jsnext: true,
@@ -100,34 +78,27 @@ const buildOptions = [{
     ],
     banner,
 },
-    // {
-    //     // build里的自动检测，输出到一个临时文件夹即可
-    //     input: resolvePath('test/index.rollup.js'),
-    //     format: 'umd',
-    //     output: {
-    //         file: resolvePath('_tmp/test.rollup.js'),
-    //         // 输出文件的umd必须要，否则watch监控失败
-    //         format: 'umd',
-    //     },
-    //     name: 'test',
-    //     plugins: [
-    //         eslint({}),
-    //     ],
-    // },
-    // {
-    //     // build里的自动检测，输出到一个临时文件夹即可
-    //     input: resolvePath('build/index.rollup.js'),
-    //     format: 'umd',
-    //     output: {
-    //         file: resolvePath('_tmp/build.rollup.js'),
-    //         // 输出文件的umd必须要，否则watch监控失败
-    //         format: 'umd',
-    //     },
-    //     name: 'build',
-    //     plugins: [
-    //         eslint({}),
-    //     ],
-    // }
+{
+    input: resolvePath(SOURCE_ENTRY_FILE),
+    format: 'umd',
+    output: {
+        file: resolvePath(`${RELEASE_ROOT_PATH}/release/${RELEASE_FILE_NAME}@rollup.min.js`),
+        // 输出文件的umd必须要，否则watch监控失败
+        format: 'umd',
+    },
+    name: 'mobeditor',
+    plugins: [
+        postcss({ extensions: ['.css'] }),
+        babel({ exclude: 'node_modules/**' }),
+        commonjs(),
+        resolve({
+            jsnext: true,
+            main: true,
+            browser: true
+        })
+    ],
+    banner,
+}
 ];
 
 module.exports.buildOptions = buildOptions;
@@ -176,7 +147,6 @@ function write(dest, code, zip) {
 function buildEntry(config) {
     const dest = config.output.file;
     const isProd = /min\.js$/.test(dest);
-
     return rollup.rollup(config).then(bundle => bundle.generate(config)).then((res) => {
         if (isProd) {
             const minified = (config.banner ? config.banner : '') + uglify.minify(res.code, {

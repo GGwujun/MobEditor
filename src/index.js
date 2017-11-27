@@ -1,5 +1,6 @@
 import mobeditor from './Editor/'
-export default mobeditor
-export { mobeditor }
+import '../css/base.css';
 
+// export { mobeditor }
+export default mobeditor
 

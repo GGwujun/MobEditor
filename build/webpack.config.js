@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack')
 const pkg = require('../package.json');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 
@@ -30,118 +29,99 @@ module.exports = [{
     entry: resolvePath(SOURCE_ENTRY_FILE),
     output: {
         libraryTarget: "umd",
-        filename: `${RELEASE_FILE_NAME}.${RELEASE_FILE_VERSION}.js`,
+        filename: `${RELEASE_FILE_NAME}@webpack.js`,
         path: resolvePath(`${EXAMPLE_PATH}`),
     },
     module: {
-        rules: [{
-            test: /\.css$/,
-            use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                use: "css-loader"
-            })
-        }, {
-            test: /\.exec\.js$/,
-            use: ['script-loader']
-        }, {
-            test: /\.(jpg|png|gif|woff|svg)$/,
-            use: "url-loader?limit=8000&name=img/[name].[hash:8].[ext]"
-        },
-        {
-            test: /\.js$/,
-            exclude: /(node_modules|bower_components)/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ['env']
+        rules: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.(jpg|png|gif|woff|svg)$/,
+                use: "url-loader?limit=8000&name=img/[name].[hash:8].[ext]"
+            },
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env']
+                    }
                 }
             }
-        }
         ]
     },
     plugins: [
-        // new HtmlWebpackPlugin({
-        //     template: './src/public/index.html',
-        //     inject: 'body'
-        // }),
-        new ExtractTextPlugin("[name].[hash].css"),
-        new webpack.BannerPlugin(banner),
-        //new ExtractTextPlugin(`${RELEASE_FILE_NAME}.${RELEASE_FILE_VERSION}.css`),
+        new webpack.BannerPlugin(banner)
     ]
-}, {
+},
+{
     entry: resolvePath(SOURCE_ENTRY_FILE),
     output: {
         libraryTarget: "umd",
-        filename: `${RELEASE_FILE_NAME}.min.${RELEASE_FILE_VERSION}.js`,
+        filename: `${RELEASE_FILE_NAME}@webpack.js`,
+        path: resolvePath(`${RELEASE_ROOT_PATH}/debug`),
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.(jpg|png|gif|woff|svg)$/,
+                use: "url-loader?limit=8000&name=img/[name].[hash:8].[ext]"
+            },
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env']
+                    }
+                }
+            }
+        ]
+    },
+    plugins: [
+        new webpack.BannerPlugin(banner)
+    ]
+},
+{
+    entry: resolvePath(SOURCE_ENTRY_FILE),
+    output: {
+        libraryTarget: "umd",
+        filename: `${RELEASE_FILE_NAME}@webpack.min.js`,
         path: resolvePath(`${RELEASE_ROOT_PATH}/release`),
     },
     module: {
-        rules: [{
-            test: /\.css$/,
-            use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                use: "css-loader"
-            })
-        }, {
-            test: /\.exec\.js$/,
-            use: ['script-loader']
-        }, {
-            test: /\.(jpg|png|gif|woff|svg)$/,
-            use: "url-loader?limit=8000&name=img/[name].[hash:8].[ext]"
-        },
-        {
-            test: /\.js$/,
-            exclude: /(node_modules|bower_components)/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ['env']
+        rules: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.(jpg|png|gif|woff|svg)$/,
+                use: "url-loader?limit=8000&name=img/[name].[hash:8].[ext]"
+            },
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env']
+                    }
                 }
             }
-        }
         ]
     },
     plugins: [
         new webpack.BannerPlugin(banner),
-        new ExtractTextPlugin(`${RELEASE_FILE_NAME}.min.${RELEASE_FILE_VERSION}.css`),
-        new UglifyJSPlugin()
-    ]
-}, {
-    entry: resolvePath(SOURCE_ENTRY_FILE),
-    output: {
-        libraryTarget: "umd",
-        filename: `${RELEASE_FILE_NAME}.min.js`,
-        path: resolvePath(`${RELEASE_ROOT_PATH}`),
-    },
-    module: {
-        rules: [{
-            test: /\.css$/,
-            use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                use: "css-loader"
-            })
-        }, {
-            test: /\.exec\.js$/,
-            use: ['script-loader']
-        }, {
-            test: /\.(jpg|png|gif|woff|svg)$/,
-            use: "url-loader?limit=8000&name=img/[name].[hash:8].[ext]"
-        },
-        {
-            test: /\.js$/,
-            exclude: /(node_modules|bower_components)/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ['env']
-                }
-            }
-        }
-        ]
-    },
-    plugins: [
-        new webpack.BannerPlugin(banner),
-        new ExtractTextPlugin(`${RELEASE_FILE_NAME}.min.css`),
         new UglifyJSPlugin()
     ]
 }];
