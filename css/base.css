@@ -10,8 +10,6 @@
     overflow: hidden
 }
 
-
-
 .Eleditor-loading {
     display: none;
     position: absolute;
@@ -55,7 +53,6 @@
 .Eleditor-wrap * {
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
 .Eleditor-area .Eleditor-active {
@@ -90,7 +87,6 @@
     transform: translate3d(0, 100%, 0);
 }
 
-
 .Eleditor-wrap.Eleditor-mask {
     position: absolute;
     left: 0;
@@ -114,7 +110,8 @@
 }
 
 .Eleditor-controller ul {
-    margin-bottom: 2.5%
+    margin-bottom: 2.5%;
+    padding-left: 0
 }
 
 .Eleditor-controller ul:after {
@@ -126,7 +123,6 @@
 
 .Eleditor-controller ul li {
     float: left;
-    display: inline-block;
     width: 30%;
     margin: 2% 0 0 2.5%;
     height: 42px;

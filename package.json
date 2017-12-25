@@ -2,7 +2,7 @@
   "name": "mobeditor",
   "version": "1.0.6",
   "description": "editor  mobile  phoneeditor",
-  "main": "index.js",
+  "main": "dist/release/mobeditor@rollup.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config build/webpack.config.js",

@@ -2,7 +2,7 @@ import { _formatInnerText, _getLayerMaxZIndex, _genEditorUid, _inArray, _scriptP
 import config from '../config'
 import { Text } from '../Text/'
 import { selectors } from '../Selector/'
-import { _showEditorWrapMask, _appendHistory, _hideEditorControllerLayer, _correctHtmlStructure } from '../Editor/'
+import { _showEditorWrapMask, _handleHistory, _appendHistory, _hideEditorControllerLayer, _correctHtmlStructure } from '../Editor/'
 
 
 
@@ -85,7 +85,7 @@ export var _editorModuleEvents = {
         _correctHtmlStructure(selectors._$wrap, config.placeHolder);
     },
     undo: function ($this) {
-        _handleHistory();
+        _handleHistory($this);
         _hideEditorControllerLayer();
     },
     cancel: function ($this) {

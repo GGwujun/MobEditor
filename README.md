@@ -12,7 +12,7 @@
 
 - 直接下载：[https://github.com/GGwujun/MobEditor/blob/master/dist](https://github.com/GGwujun/MobEditor/blob/master/dist)
 - 使用`npm`下载：`npm install mobeditor` （注意 `mobeditor` 全部是**小写字母**）
-- 使用`bower`下载：`bower install mobeditor` （前提保证电脑已安装了`bower`）
+
 
 ## 使用
 
@@ -45,6 +45,17 @@ var contentEditor = new mobeditor({
 - 下载源码 `git clone https://github.com/GGwujun/MobEditor.git`
 - 安装或者升级最新版本 node（最低`v6.x.x`）
 - 进入目录，安装依赖包 `cd MobEditor && npm i`
+
+## Screenshots
+
+![](Screenshots/1.png)
+![](Screenshots/2.png)
+![](Screenshots/3.png)
+
+---
+
+持续更新中，欢迎Star~欢迎下载~
+
 
 ## 交流
 

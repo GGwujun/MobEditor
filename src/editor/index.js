@@ -15,32 +15,31 @@ export default class mobeditor {
     }
 
     init(params) {
-        console.log('|--Eleditor Initing');
+        console.log('editor start init');
+
         //插入base.css
-        _scriptPath();
+        //_scriptPath();
 
         //合并配置参数
-        var _arg = Object.assign({}, config, params);
-
         Object.assign(config, params);
 
         var _editorUid = _genEditorUid();
 
         this._historys = [];
 
-        if (_arg.el instanceof jQuery) {
-            var _$wrap = _arg.el;
+        if (config.el instanceof jQuery) {
+            var _$wrap = config.el;
         } else {
-            var _$wrap = $(_arg.el);
+            var _$wrap = $(config.el);
             if (_$wrap.length === 0) {
-                return console.warn('|--Eleditor ' + _arg.el + '元素不存在，请在DOMContentLoaded后初始化Eleditor');
+                return console.warn('|--Eleditor ' + config.el + '元素不存在，请在DOMContentLoaded后初始化Eleditor');
             } else if (_$wrap.length != 1) {
                 var _$wrap = $(_$wrap[0]);
             }
         }
 
         if (_$wrap.attr('Eleditor-Inited') === 'true') {
-            return console.warn('|--Eleditor ' + _arg.el + '已经绑定了Eleditor');
+            return console.warn('|--Eleditor ' + config.el + '已经绑定了Eleditor');
         }
 
         /**
@@ -50,22 +49,25 @@ export default class mobeditor {
 
 
         //构建编辑器
-        _correctHtmlStructure(_$wrap, _arg.placeHolder);
+        _correctHtmlStructure(_$wrap, config.placeHolder);
 
         //获取编辑器dom
-        var _$editorWrap = $(_buildEditorModule(_arg.toolbars, _editorUid));
+        var _$editorWrap = $(_buildEditorModule(config.toolbars, _editorUid));
+
         _$wrap.addClass('Eleditor-area');
         _$wrap.after(_$editorWrap);
 
-        initele(_$editorWrap, _$wrap)
-        console.log('|--Eleditor Mounted To', _$wrap);
+        initele(_$editorWrap, _$wrap);
 
 
-        initEvent(_arg);
+        console.log('editor is  mounted to', _$wrap);
+
+
+        initEvent(config);
 
         var self = this;
 
-        /*controller*/
+
         _$wrap.on('click', '*', function (_e) {
             var _$this = $(this);
             if (!_$this.hasClass('Eleditor-active')) {
@@ -76,6 +78,7 @@ export default class mobeditor {
         });
 
 
+        //初始化工具栏
         initTool(this);
 
         //初始化图片上传
@@ -89,10 +92,10 @@ export default class mobeditor {
         return selectors._$wrap.append(arguments[0]);
     }
     getEditNode() {
-        if (_$selected === null) {
+        if (selectors._$selected === null) {
             console.warn('未选中状态getEditNode返回null');
         }
-        return _$selected;
+        return selectors._$selected;
     }
     getContent() {
         return selectors._$wrap.html();
@@ -107,7 +110,7 @@ export default class mobeditor {
         selectors._$wrap.off().find('.Eleditor-active').removeClass('Eleditor-active');
         selectors._$editorWrap.find('*').off();
         selectors._$editorWrap.remove();
-        console.log('|--Eleditor ' + this._editorUid + ' destoryed');
+        console.log('|' + this._editorUid + ' destoryed');
     }
 }
 
@@ -117,7 +120,7 @@ export default class mobeditor {
  * @param {*selector} _wrap 
  * @param {*string} _empty 
  */
-export var _correctHtmlStructure = function (_wrap, _empty) {
+export function _correctHtmlStructure(_wrap, _empty) {
     if (_formatInnerText(_wrap.text()) == '' && _wrap.find('img').length === 0)
         _wrap.append(_empty);
     if (_wrap.find('*').length === 0)
@@ -320,6 +323,7 @@ export function _appendHistory(editor, editObj) {
     editor._historys.push(editObj);
     _flushHistoryBtn(editor);
 }
+
 export function _handleHistory(editor) {
     if (editor._historys.length === 0) return;
     var _handle = editor._historys.pop();
@@ -346,7 +350,7 @@ export function _handleHistory(editor) {
     if (_handle.m == 'deleteAfterNode') {
         _handle.node.after(_handle.anode);
     }
-    _flushHistoryBtn();
+    _flushHistoryBtn(editor);
 
 }
 
@@ -364,8 +368,8 @@ export function _flushHistoryBtn(editor) {
 export function _flushEditorControllerLayerPosi() {
     if (selectors._$selected) {
         selectors._$editorController.css({
-            top: _$selected.offset().top + _$selected.outerHeight(),
-            width: _$wrap.width() - 5
+            top: selectors._$selected.offset().top + selectors._$selected.outerHeight(),
+            width: selectors._$wrap.width() - 5
         });
     }
 };
